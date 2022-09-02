@@ -9,18 +9,37 @@ def getCollection():
     music = client["music"]
     return music["albums"]
 
+
 class Album:
-    def __init__(self, nameIn, albumIn, releasedIn, ratingIn, languageIn):
+    def __init__(self, nameIn, artistIn, releasedIn, ratingIn, languageIn):
         self.name = nameIn
-        self.album = albumIn
+        self.artist = artistIn
         self.released = releasedIn
         self.rating = ratingIn
         self.language = languageIn
 
-if __name__ == "__main__":
-    music = getCollection()
-    print(music)
-    a = Album("test", "test", "test", "test", "test")
-    music.insert_one({"test" : "test"})
-
-
+music = getCollection()
+print(music)
+running = True
+while running:
+    print("--------Music Ranker--------")
+    print('''0. Exit
+1. Add Album
+2. View Rankings
+3. Edit Album'''
+          )
+    user = int(input("Input: "))
+    match user:
+        case 0:
+            running = False
+        case 1:
+            name = input("Album Name: ")
+            artist = input("Artist Name: ")
+            released = input("Release Date: ")
+            rating = input("Rating (0/10): ")
+            language = input("Language: ")
+            newAlbum = Album(name, artist, released, rating, language)
+            music.insert_one(newAlbum.__dict__)
+        case other:
+            running = False
+a = Album("test", "test", "test", "test", "test")
