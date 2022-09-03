@@ -41,7 +41,6 @@ export default function AlbumList() {
     } 
 
     function albumList() {
-        console.log(albums)
         return albums.map((album) => {
             return (
                 <Album 

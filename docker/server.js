@@ -34,6 +34,27 @@ app.get('/albums', function(req, res) {
     })
 })
 
+app.post('/albums/add', function(req, response) {
+    body = JSON.parse(req.body)
+    response.send(body)
+    let album = {
+        name: body.name,
+        artist: body.artist,
+        released: body.released,
+        rating: body.rating,
+        language: body.language,
+    }
+    client.connect()
+    client
+    .db("music")
+    .collection("albums")
+    .insertOne(album, function (err, res) {
+        if (err) throw err
+        console.log('test')
+        response.json(res)
+    })
+})
+
 app.listen(PORT, function(){
     console.log('Your node js server is running on PORT:', PORT)
 })
