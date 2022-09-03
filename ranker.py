@@ -16,10 +16,14 @@ def csvOutput(collection):
     df.to_csv('ALBUMS.csv', index=False)
 
 def showAlbumRankings(collection):
-    cursor = collection.find().sort("rating", -1).collation({"locale": "en_US", "numericOrdering": True})
-    print("\nRANKINGS")
-    for document in cursor:
-        print(f'{document["name"]} - {document["artist"]}: {document["rating"]}')
+    try:
+        cursor = collection.find().sort("rating", -1).collation({"locale": "en_US", "numericOrdering": True})
+    except:
+        print("Error Connecting to MongoDB")
+    finally:
+        print("\nRANKINGS")
+        for document in cursor:
+            print(f'{document["name"]} - {document["artist"]}: {document["rating"]}')
 
 
 def addAlbum(collection):
