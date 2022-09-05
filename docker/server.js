@@ -2,8 +2,10 @@ const express = require('express')
 const app = express()
 const {MongoClient}= require('mongodb')
 const cors = require("cors")
+const { logger, readLog } = require('./utils/logger');
 app.use(cors())
 
+const bodyParser = require('body-parser')
 const config = require('./db')
 const PORT = 4000
 const client = new MongoClient(config.DB);
@@ -22,6 +24,11 @@ async function run() {
 }
 run().catch(console.dir);
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+
 app.get('/albums', function(req, res) {
     client.connect()
     client
@@ -35,14 +42,13 @@ app.get('/albums', function(req, res) {
 })
 
 app.post('/albums/add', function(req, response) {
-    body = JSON.parse(req.body)
-    response.send(body)
+    logger.info(req.body)
     let album = {
-        name: body.name,
-        artist: body.artist,
-        released: body.released,
-        rating: body.rating,
-        language: body.language,
+        name: req.body.name,
+        artist: req.body.artist,
+        released: req.body.released,
+        rating: req.body.rating,
+        language: req.body.language,
     }
     client.connect()
     client
@@ -55,6 +61,16 @@ app.post('/albums/add', function(req, response) {
     })
 })
 
+app.get("/api/logs", (request, response) => {
+    try {
+      const result = readLog();
+      response.set('Content-Type', 'text/plain');
+      return response.send(result);
+    } catch(e) {
+      return response.sendStatus(500);
+    }
+  });
+
 app.listen(PORT, function(){
-    console.log('Your node js server is running on PORT:', PORT)
+    logger.info('Your node js server is running on PORT:', PORT)
 })
