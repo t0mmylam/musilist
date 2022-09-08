@@ -1,10 +1,10 @@
 import React from 'react'
 
 import {Route, Routes} from 'react-router-dom'
-
+import 'bootstrap/dist/css/bootstrap.css';
 import AlbumList from './components/albumList'
 import Create from './components/create'
-import Navbar from './components/navbar'
+import Navbar from './components/navbar/navbar'
 
 const App = () => {
     return (

@@ -3,11 +3,12 @@ services:
   app:
     container_name: app
     restart: always
-    build: .
+    image: docker-app
     ports:
       - "4000:4000"
     links:
       - mongo
+
   mongo:
     container_name: mongo
     image: mongo

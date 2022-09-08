@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import './albumList.css';
 
 const Album = (props) => (
     <tr>
@@ -53,9 +53,9 @@ export default function AlbumList() {
     }
 
     return (
-        <div>
+        <div id="table">
             <h3>Album List</h3>
-            <table className="table table-striped" style={{ marginTop: 20}}>
+            <table style={{ marginTop: 20}}>
                 <thead>
                     <tr>
                         <th>Name</th>
