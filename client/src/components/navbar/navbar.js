@@ -20,7 +20,7 @@ class Navbar extends React.Component {
           {MenuItems.map((item, index) => {
             return (
               <li key={index}>
-                <a className={item.cName} href={item.url}>
+                <a href={item.url} className={this.state.clicked ? 'nav-links active' : 'nav-links'}>
                   {item.title}
                 </a>
               </li>
