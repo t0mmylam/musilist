@@ -1,9 +1,16 @@
 #table {
     padding-inline: 5vh;
     color: #fff;
-    background: #000;
+    min-height: 100%;
+    margin-top: 20px;
 }
 
 h3 {
     letter-spacing: 1.5px;
+}
+
+body {
+    height: 100vh;
+    flex-shrink: 0;
+    background: rgb(40, 39, 40);
 }

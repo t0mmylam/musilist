@@ -1,7 +1,6 @@
 import React from 'react';
 import { MenuItems } from "./items"
 import './navbar.css';
-import { Button } from '../button'
 
 class Navbar extends React.Component {
   state = { clicked: false }
@@ -21,14 +20,13 @@ class Navbar extends React.Component {
           {MenuItems.map((item, index) => {
             return (
               <li key={index}>
-                <a className={item.cName} herf={item.url}>
+                <a className={item.cName} href={item.url}>
                   {item.title}
                 </a>
               </li>
             )
           })}
         </ul>
-        <Button>Sign Up</Button>
       </nav>
     )
   }

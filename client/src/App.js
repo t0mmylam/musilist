@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import AlbumList from './components/albumList'
 import Create from './components/create'
 import Navbar from './components/navbar/navbar'
+import './App.css'
 
 const App = () => {
     return (
