@@ -14,9 +14,5 @@ export const MenuItems = [
     {
         title: 'Forum',
         url: '#',
-    },
-    {
-        title: 'Login / Sign Up',
-        url: '#',
     }
 ]
