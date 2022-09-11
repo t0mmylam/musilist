@@ -11,23 +11,32 @@ class Navbar extends React.Component {
 
   render() {
     return (
-      <nav className="NavbarItems">
-        <h1 className="navbar-logo"><i className="fa-solid fa-music"></i> MusiRank</h1>
-        <div className="menu-icon" onClick={this.handleClick}>
-          <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
+      <div>
+        <nav className="NavbarItems">
+          <h1 className="navbar-logo"><i className="fa-solid fa-music"></i> MusiList</h1>
+          <ul className='nav-menu'>
+            {MenuItems.map((item, index) => {
+              return (
+                <li key={index}>
+                  <a href={item.url} className='nav-links'>
+                    {item.title}
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
+        </nav>
+        <div className={this.state.clicked ? 'navbox active' : 'navbox'}>
+
         </div>
-        <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
-          {MenuItems.map((item, index) => {
-            return (
-              <li key={index}>
-                <a href={item.url} className={this.state.clicked ? 'nav-links active' : 'nav-links'}>
-                  {item.title}
-                </a>
-              </li>
-            )
-          })}
-        </ul>
-      </nav>
+        <div className={this.state.clicked ? 'menu-icon active' : 'menu-icon'} onClick={this.handleClick}>
+          <ul className={this.state.clicked ? 'nav-box active' : 'nav-box'}>
+          <li className="linkitem"><a className='fa-solid fa-house link' href="/"></a></li>
+          <li><a className='fa-solid fa-magnifying-glass link' href="/"></a></li>
+          <li><i className={this.state.clicked ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'}></i></li>
+          </ul>
+        </div>
+      </div>
     )
   }
 }

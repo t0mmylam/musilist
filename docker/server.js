@@ -1,44 +1,61 @@
 const express = require('express')
 const app = express()
-const {MongoClient}= require('mongodb')
+const { Sequelize, Model, DataTypes } = require('sequelize')
 const cors = require("cors")
 const { logger, readLog } = require('./utils/logger');
 app.use(cors())
 
-const bodyParser = require('body-parser')
-const config = require('./db')
 const PORT = 4000
-const client = new MongoClient(config.DB);
+const bodyParser = require('body-parser')
+const sequelize = new Sequelize('postgres://musi:secret@postgres:5432/musilist', {
+  dialect: 'postgres',
+  protocol: 'postgres',
+  dialectOptions: {},
+})
 
-async function run() {
-  try {
-    // Connect the client to the server (optional starting in v4.7)
-    await client.connect();
-    // Establish and verify connection
-    await client.db("music").command({ ping: 1 });
-    console.log("Connected successfully to server");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
+class Album extends Model {}
+Album.init({
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  name: {
+    type: DataTypes.TEXT
+  },
+  rating: {
+    type: DataTypes.FLOAT
+  },
+  artist: {
+    type: DataTypes.TEXT
+  },
+  language: {
+    type: DataTypes.TEXT
+  },
+  genre: {
+    type: DataTypes.TEXT
+  },
+  released: {
+    type: DataTypes.DATE
   }
-}
-run().catch(console.dir);
+}, {
+  sequelize,
+  underscored: true,
+  timestamps: false,
+  modelName: 'album'
+})
+
+Album.sync()
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
   }));
 
-app.get('/albums', function(req, res) {
-    client.connect()
-    client
-    .db("music")
-    .collection("albums")
-    .find({})
-    .toArray(function (err, result) {
-        if (err) throw err
-        res.json(result)
-    })
+app.get('/albums', async function(req, res) {
+    const albums = await Album.findAll()
+    console.log(albums)
+    res.json(albums)
 })
 
 app.post('/albums/add', function(req, response) {

@@ -3,14 +3,29 @@ services:
   app:
     container_name: app
     restart: always
+    build:
+      context: .
     image: docker-app
     ports:
       - "4000:4000"
     links:
-      - mongo
+      - postgres
+    environment:
+      - PGUSER=musi
+      - PGPASSWORD=secret
+      - PGDATABASE=musilist
 
-  mongo:
-    container_name: mongo
-    image: mongo
+  postgres:
+    container_name: postgres
+    image: 'postgres:14'
     ports:
-      - "27017:27017"
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=musi
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=musilist
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  
+volumes:
+  pgdata: {}
