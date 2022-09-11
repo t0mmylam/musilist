@@ -29,13 +29,12 @@ class Navbar extends React.Component {
         <div className={this.state.clicked ? 'navbox active' : 'navbox'}>
 
         </div>
-        <div className={this.state.clicked ? 'menu-icon active' : 'menu-icon'} onClick={this.handleClick}>
-          <ul className={this.state.clicked ? 'nav-box active' : 'nav-box'}>
-          <li className="linkitem"><a className='fa-solid fa-house link' href="/"></a></li>
-          <li><a className='fa-solid fa-magnifying-glass link' href="/"></a></li>
-          <li><i className={this.state.clicked ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'}></i></li>
-          </ul>
-        </div>
+        <i className={this.state.clicked ? 'hide' : 'fa-solid fa-bars'} onClick={this.handleClick}></i>
+        <ul className={this.state.clicked ? 'nav-box active' : 'nav-box'}>
+          <li><a className={this.state.clicked ? 'fa-solid fa-magnifying-glass link' : 'none'} href="/"></a></li>
+          <li><a className={this.state.clicked ? 'fa-solid fa-house link' : 'none'} href="/"></a></li>
+          <li><i className={this.state.clicked ? 'fa-solid fa-xmark' : 'hide'} onClick={this.handleClick}></i></li>
+        </ul>
       </div>
     )
   }
