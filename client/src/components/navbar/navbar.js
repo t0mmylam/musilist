@@ -14,6 +14,7 @@ class Navbar extends React.Component {
       <div>
         <nav className="NavbarItems">
           <h1 className="navbar-logo"><i className="fa-solid fa-music"></i> MusiList</h1>
+          <div className="divider"></div>
           <ul className='nav-menu'>
             {MenuItems.map((item, index) => {
               return (

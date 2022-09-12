@@ -45,8 +45,8 @@ export default function AlbumList() {
             return (
                 <Album 
                     album={album}
-                    deleteAlbums={() => deleteAlbum(album._id)}
-                    key={album._id}
+                    deleteAlbums={() => deleteAlbum(album.id)}
+                    key={album.id}
                 />
             )
         })
@@ -54,8 +54,7 @@ export default function AlbumList() {
 
     return (
         <div id="table">
-            <h3>Album List</h3>
-            <table style={{ marginTop: 20}}>
+            <table class="table">
                 <thead>
                     <tr>
                         <th>Name</th>

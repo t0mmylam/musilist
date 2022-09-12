@@ -1,16 +1,23 @@
 #table {
-    padding-inline: 5vh;
+    padding-inline: 12vh;
     color: #fff;
     min-height: 100%;
     margin-top: 20px;
-}
-
-h3 {
-    letter-spacing: 1.5px;
+    justify-content: center;
+    display: flex;
 }
 
 body {
-    height: 100vh;
-    flex-shrink: 0;
     background: rgb(40, 39, 40);
+}
+
+.table {
+    border-collapse: seperate;
+    border-spacing: 3px;
+    color: white;
+    text-align: center;
+}
+
+td {
+    padding: 10px 0;
 }

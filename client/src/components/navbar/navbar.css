@@ -5,7 +5,7 @@
     padding-top: 15px;
     justify-content: space-between;
     align-items: center;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .navbar-logo {
@@ -13,11 +13,18 @@
     justify-self: center;
     margin-left: 20px;
     cursor: pointer;
+    font-size: 1.5rem;
+    transform: translate(0%, -10%);
+}
+
+.divider {
+    background-color: #fff;
+    width: 1px;
 }
 
 .fa-react {
     margin-left: 0.5rem;
-    font-style: 1.6rem;
+    font-style: 1.2rem;
 }
 
 .nav-box {
@@ -49,7 +56,7 @@
 }
 
 .fa-bars {
-    color: #fff;
+    display: none;
 }
 
 .nav-links-mobile {
@@ -60,7 +67,7 @@
     display: none;
 }
 
-@media screen and (max-width:960px) {
+@media screen and (max-width:600px) {
     .NavbarItems {
         display: none;
     }
@@ -70,15 +77,17 @@
     }
 
     .fa-bars {
+        display: initial;
         color: #fff;
         font-size: 2rem;
         text-align: center;
         position: fixed;
         background: rgb(116, 182, 116);
-        padding: 5px;
+        padding: 8px;
+        padding-inline: 10px;
         border-radius: 6px;
-        top: 10px;
-        right: 10px;
+        top: 20px;
+        right: 20px;
     }
 
     .nav-box {
@@ -99,7 +108,7 @@
         position: fixed;
         padding: 15px;
         display: grid;
-        box-shadow: 0 0 10px 1px rgb(195, 225, 205);
+        box-shadow: 0 0 4px 1px rgb(175, 239, 196);
         height: 150px;
         width: 150px;
         animation: fadeIn 0.2s;
