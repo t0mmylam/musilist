@@ -21,7 +21,6 @@ export default function Create() {
         e.preventDefault()
         
         const newAlbum = {...form}
-        console.log(newAlbum)
         await fetch("http://localhost:4000/albums/add", {
             method: "POST",
             headers: {

@@ -5,6 +5,9 @@
     margin-top: 20px;
     justify-content: center;
     display: flex;
+    background: #2e3136;
+    margin: 30px;
+    padding-inline: 30px;
 }
 
 body {
@@ -16,8 +19,13 @@ body {
     border-spacing: 3px;
     color: white;
     text-align: center;
+    vertical-align: middle;
 }
 
 td {
     padding: 10px 0;
+}
+
+.cover {
+    width: 50px;
 }

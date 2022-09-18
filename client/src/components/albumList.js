@@ -3,6 +3,7 @@ import './albumList.css';
 
 const Album = (props) => (
     <tr>
+        <td><img className="cover" alt="" src="https://musilistimages.s3.amazonaws.com/albums/BlondeFrankOcean.jpeg"></img></td>
         <td>{props.album.name}</td>
         <td>{props.album.artist}</td>
         <td>{props.album.released}</td>
@@ -57,6 +58,7 @@ export default function AlbumList() {
             <table class="table">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Name</th>
                         <th>Artist</th>
                         <th>Release Date</th>
