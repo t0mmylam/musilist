@@ -34,9 +34,9 @@ export default function Signup() {
             return
         }
         let count = 0
-        fetch(`http://localhost:4000/api/users?username=`+newUser.username).then((response) => response.json())
-        .then((data) => {
-            count = data.count
+        fetch(`http://localhost:4000/api/username?username=`+newUser.username).then((response) => {
+            response.json()
+            count = response.count
         })
         if (count !== 0) {
             alert('Username already exists.')
@@ -61,9 +61,9 @@ export default function Signup() {
         <div className="form container">
             <h3>Sign up to MusiList</h3>
             <form id="login" onSubmit={handleSubmit}>
-                <input value={form.username} onChange={(e) => updateForm({ username : e.target.value})} required type="Text" placeholder="Username" class="ml-input" autoComplete="off"></input>
-                <input value={form.password} onChange={(e) => updateForm({ password : e.target.value})} name="password" type="Password" placeholder="Password" class="ml-input" autoComplete="off"></input>
-                <input id="confirmPassword" name="confirm_password" type="Password" placeholder="Confirm Password" class="ml-input" autoComplete="off"></input>
+                <input value={form.username} onChange={(e) => updateForm({ username : e.target.value})} required type="Text" placeholder="Username" className="ml-input" autoComplete="off"></input>
+                <input value={form.password} onChange={(e) => updateForm({ password : e.target.value})} name="password" type="Password" placeholder="Password" className="ml-input" autoComplete="off"></input>
+                <input id="confirmPassword" name="confirm_password" type="Password" placeholder="Confirm Password" className="ml-input" autoComplete="off"></input>
             </form>
             <button type="submit" form="login" value="Submit">Sign Up</button>
             <a href="/login" className="link-log">Sign Up</a>

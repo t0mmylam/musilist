@@ -32,21 +32,11 @@ export default function AlbumList() {
         return
     }, [albums.length])
 
-    async function deleteAlbum(id) {
-        await fetch(`http://localhost:4000/${id}`, {
-            method: "DELETE"
-        })
-
-        const newAlbums = albums.filter((el) => el._id !== id)
-        setAlbums(newAlbums)
-    } 
-
     function albumList() {
         return albums.map((album) => {
             return (
                 <Album 
                     album={album}
-                    deleteAlbums={() => deleteAlbum(album.id)}
                     key={album.id}
                 />
             )
@@ -55,7 +45,7 @@ export default function AlbumList() {
 
     return (
         <div id="table">
-            <table class="table">
+            <table className="table">
                 <thead>
                     <tr>
                         <th></th>
