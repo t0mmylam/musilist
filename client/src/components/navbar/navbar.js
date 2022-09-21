@@ -9,7 +9,7 @@ export default function Navbar() {
     const loggedInUser = localStorage.getItem("user")
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
-      console.log(foundUser)
+      // console.log(foundUser)
       setUser(foundUser);
     }
   }, []);
@@ -22,11 +22,13 @@ export default function Navbar() {
     return (
       <div>
         <nav className="NavbarItems">
-          <h1 className="navbar-logo"><img width="25" alt='' src={require("./playlist.png")}></img> MusiList</h1>
+          <a href="/">
+            <h1 className="navbar-logo"><img width="25" alt='' src={require("./playlist.png")}></img> MusiList</h1>
+          </a>
           <ul className='nav-menu'>
-            <li><a href="/" className="nav-links">Home</a></li>
-            <li><a href="/" className="nav-links">Browse</a></li>
-            <li><a href="/" className="nav-links">Forum</a></li>
+            <li><a href="/add" className="nav-links">Add</a></li>
+            <li><a href="/browse" className="nav-links">Browse</a></li>
+            <li><a href="/forum" className="nav-links">Forum</a></li>
           </ul>
           <div className="button-wrapper">
             <a href={"/user/" + user.username} className="nav-links"><img width="25" alt='' src={user.image}></img></a>
@@ -46,9 +48,9 @@ export default function Navbar() {
         <nav className="NavbarItems">
           <h1 className="navbar-logo"><img width="25" alt='' src={require("./playlist.png")}></img> MusiList</h1>
           <ul className='nav-menu'>
-            <li><a href="/" className="nav-links">Home</a></li>
-            <li><a href="/" className="nav-links">Browse</a></li>
-            <li><a href="/" className="nav-links">Forum</a></li>
+            <li><a href="/add" className="nav-links">Add</a></li>
+            <li><a href="/browse" className="nav-links">Browse</a></li>
+            <li><a href="/forum" className="nav-links">Forum</a></li>
           </ul>
           <div className="button-wrapper">
             <a href="/login" className="nav-links">Login</a>

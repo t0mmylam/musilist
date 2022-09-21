@@ -2,11 +2,11 @@ import React from 'react'
 
 import {Route, Routes} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css';
-import AlbumList from './components/albumList'
-import Create from './components/create'
+import Add from './components/add/add'
 import Navbar from './components/navbar/navbar'
 import Login from './components/logsign/login'
 import SignUp from './components/logsign/signup'
+import Profile from './components/profile/profile'
 import './App.css'
 
 const App = () => {
@@ -14,10 +14,11 @@ const App = () => {
         <div>
             <Navbar />
             <Routes>
-                <Route exact path ="/" element={<AlbumList />} />
+                <Route exact path ="/" element={<Profile />} />
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/signup" element={<SignUp />} />
-                <Route path="/create" element={<Create />} />
+                <Route exact path="/add" element={<Add />} />
+                <Route path="/user/:username" element={<Profile />} />
             </Routes>
         </div>
     )

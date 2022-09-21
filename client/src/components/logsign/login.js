@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate, useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import './logsign.css'
 
 export default function Login() {
@@ -19,7 +19,6 @@ export default function Login() {
         e.preventDefault()
         const newUser = {...form}
         let count = 0
-        console.log(`http://localhost:4000/api/users?username=`+newUser.username+`&password=`+newUser.password)
         await fetch(`http://localhost:4000/api/users?username=`+newUser.username+`&password=`+newUser.password).then((response) => response.json())
         .then((data) => {
             // console.log(data)

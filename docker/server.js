@@ -1,10 +1,17 @@
 const express = require('express')
+const fileUpload = require("express-fileupload")
 const app = express()
+app.use(fileUpload())
 const { Sequelize, Model, DataTypes } = require('sequelize')
 const cors = require("cors")
 const { logger, readLog } = require('./utils/logger');
+const AWS = require("aws-sdk")
 app.use(cors())
-
+app.use(express.json())
+const s3 = new AWS.S3({
+  accessKeyId: 'AKIAZE7A6VLM5NNXPS46',
+  secretAccessKey: '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',
+})
 const PORT = 4000
 const bodyParser = require('body-parser');
 const sequelize = new Sequelize('postgres://musi:secret@postgres:5432/musilist', {
@@ -22,9 +29,6 @@ Album.init({
   },
   name: {
     type: DataTypes.STRING
-  },
-  rating: {
-    type: DataTypes.FLOAT
   },
   artist: {
     type: DataTypes.STRING
@@ -74,8 +78,39 @@ User.init({
     modelName: 'user'
 })
 
+class Rating extends Model {}
+Rating.init({
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+  },
+  username: {
+    type: DataTypes.STRING
+  },
+  rating: {
+    type: DataTypes.INTEGER
+  }
+}, {
+  sequelize,
+  underscored: true,
+  timestamps: false,
+  modelName: 'rating'
+})
+
 User.sync()
 Album.sync()
+Rating.sync()
+
+async function uploadFile(file) {
+  const params = {
+    Bucket: 'musilistimages',
+    Key: `albums/${file.name}`,
+    Body: file.data,
+    ACL: "public-read",
+  }
+  const data = await s3.upload(params).promise()
+  return data.Location
+}
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -96,13 +131,22 @@ app.get('/api/users/:username', async function(req, res) {
   res.json(user)
 })
 
+app.get('/api/ratings/:username', async function(req, res) {
+  const ratings = await Rating.findAll({
+    where: {
+      username: req.params.username
+    }
+  })
+  res.json(ratings)
+})
+
 app.get('/api/users/:access', async function(req, res) {
   const user = await User.count({
     where: {
       username: req.params.access
     }
   })
-  const obj = { count : number}
+  const obj = { count : user}
   res.send(JSON.stringify(obj))
 })
 
@@ -125,6 +169,22 @@ app.get('/api/users', async function(req, res) {
   })
   const obj = { count : number}
   res.send(JSON.stringify(obj))
+})
+
+app.post('/api/albums/add', async function(req, res) {
+  const album = await Album.create({
+    name: req.body.name,
+    artist: req.body.artist,
+    language: req.body.language,
+    genre: req.body.genre,
+    released: req.body.released,
+    image: req.body.image
+  })
+  if (album) {
+    res.send(album)
+  } else {
+    res.status(400).send('Error in adding new album')
+  }
 })
 
 app.post('/api/users/add', async function(req, res) {
@@ -150,6 +210,12 @@ app.get("/api/logs", (request, response) => {
       return response.sendStatus(500);
     }
   });
+
+app.post("/upload", async (req, res) => {
+  logger.info(req.files)
+  const fileLocation = await uploadFile(req.files.file)
+  return res.status(200).json({ location : fileLocation })
+})
 
 app.listen(PORT, function(){
     logger.info('Your node js server is running on PORT:', PORT)
