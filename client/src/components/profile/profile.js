@@ -6,7 +6,7 @@ const Album = (props) => (
         <td><img className="cover" alt="" src={"https://musilistimages.s3.amazonaws.com/albums/"+props.album.name.replace(' ', '')+props.album.artist.replace(' ', '')+".jpeg"}></img></td>
         <td>{props.album.name}</td>
         <td>{props.album.artist}</td>
-        <td>{props.album.released}</td>
+        <td>{props.album.released.substring(0, 10)}</td>
         <td>{props.album.rating}</td>
         <td>{props.album.language}</td>
     </tr>

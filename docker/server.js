@@ -6,11 +6,12 @@ const { Sequelize, Model, DataTypes } = require('sequelize')
 const cors = require("cors")
 const { logger, readLog } = require('./utils/logger');
 const AWS = require("aws-sdk")
+require('dotenv').config()
 app.use(cors())
 app.use(express.json())
 const s3 = new AWS.S3({
-  accessKeyId: 'AKIAZE7A6VLM5NNXPS46',
-  secretAccessKey: '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',
+  accessKeyId: process.env.ACCESS_KEY,
+  secretAccessKey: process.env.SECRET_KEY,
 })
 const PORT = 4000
 const bodyParser = require('body-parser');
@@ -212,7 +213,6 @@ app.get("/api/logs", (request, response) => {
   });
 
 app.post("/upload", async (req, res) => {
-  logger.info(req.files)
   const fileLocation = await uploadFile(req.files.file)
   return res.status(200).json({ location : fileLocation })
 })
