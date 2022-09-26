@@ -119,7 +119,9 @@ app.use(bodyParser.urlencoded({
   }));
 
 app.get('/albums', async function(req, res) {
-    const albums = await Album.findAll()
+    const albums = await Album.findAll({
+      
+    })
     res.json(albums)
 })
 
