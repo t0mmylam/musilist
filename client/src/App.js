@@ -7,6 +7,7 @@ import Navbar from './components/navbar/navbar'
 import Login from './components/logsign/login'
 import SignUp from './components/logsign/signup'
 import Profile from './components/profile/profile'
+import Browse from './components/browse/browse'
 import './App.css'
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/signup" element={<SignUp />} />
                 <Route exact path="/add" element={<Add />} />
+                <Route exact path="/browse" element={<Browse />} />
                 <Route path="/user/:username" element={<Profile />} />
             </Routes>
         </div>

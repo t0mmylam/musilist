@@ -43,6 +43,12 @@ Album.init({
   released: {
     type: DataTypes.DATE
   },
+  rating: {
+    type: DataTypes.DECIMAL
+  },
+  users: {
+    type: DataTypes.INTEGER
+  },
   image: {
     type: DataTypes.TEXT
   }
