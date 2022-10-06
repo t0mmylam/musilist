@@ -1,6 +1,6 @@
 import React from "react";
 const Album = (props) => (
-  <div className="card">
+  <div className="card" onClick={props.showModal} ref={props.buttonRef}>
     <div
       className="card-image"
       href={"/album/" + props.album.id}

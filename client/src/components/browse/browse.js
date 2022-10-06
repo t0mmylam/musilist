@@ -24,7 +24,11 @@ export default function Browse() {
 
   function albumCards() {
     return albums.map((album, index) => {
-      return <AlbumCard album={album} index={index + 1}/>;
+      return (
+      <li key={index}>
+        <AlbumCard album={album} index={index+1}/>
+      </li>
+      );
     });
   }
 

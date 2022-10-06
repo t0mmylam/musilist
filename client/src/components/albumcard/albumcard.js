@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Modal } from "./Modal/modal";
 import Album from './Album/album'
+import './albumcard.css'
 
-export class Popup extends Component {
+export class AlbumCard extends Component {
   state = { isShown: false };
   showModal = () => {
     this.setState({ isShown: true }, () => {
@@ -12,7 +13,7 @@ export class Popup extends Component {
   };
   closeModal = () => {
     this.setState({ isShown: false }, () => {
-      this.TriggerButton.focus();
+      this.Album.focus();
       this.toggleScrollLock();
     });
   };
@@ -33,6 +34,7 @@ export class Popup extends Component {
       <React.Fragment>
         <Album
           album={this.props.album}
+          showModal={this.showModal}
           buttonRef={(n) => (this.Album = n)}
           index={this.props.index}
         />
@@ -51,4 +53,4 @@ export class Popup extends Component {
   }
 }
 
-export default Popup
+export default AlbumCard
