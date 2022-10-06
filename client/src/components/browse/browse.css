@@ -6,7 +6,7 @@ html, body {
 }
 
 h2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 .card-image {
@@ -55,6 +55,7 @@ h2 {
 	padding: 1em 0.5em;
 	color: rgb(189, 189, 189);
 	text-decoration: none;
+    overflow: hidden;
 }
 
 a:hover {
