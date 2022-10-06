@@ -187,7 +187,9 @@ app.post('/api/albums/add', async function(req, res) {
     language: req.body.language,
     genre: req.body.genre,
     released: req.body.released,
-    image: req.body.image
+    image: req.body.image,
+    rating: 0,
+    users: 0
   })
   if (album) {
     res.send(album)
