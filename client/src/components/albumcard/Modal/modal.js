@@ -8,7 +8,7 @@ export const Modal = ({
     modalRef,
     buttonRef,
     closeModal,
-    onSubmit
+    album
 }) => {
     return ReactDOM.createPortal(
         <FocusTrap>
@@ -34,7 +34,7 @@ export const Modal = ({
                         </span>
                     </button>
                     <div className='modal-body'>
-                        <Form onSubmit={onSubmit} />
+                        <Form album={album} />
                     </div>
                 </div>
             </aside>

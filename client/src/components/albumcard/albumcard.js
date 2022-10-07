@@ -29,6 +29,9 @@ export class AlbumCard extends Component {
   toggleScrollLock = () => {
     document.querySelector("html").classList.toggle("scroll-lock");
   };
+  onSubmit = () => {
+
+  }
   render() {
     return (
       <React.Fragment>
@@ -40,7 +43,7 @@ export class AlbumCard extends Component {
         />
         {this.state.isShown ? (
           <Modal
-            onSubmit={this.props.onSubmit}
+            album={this.props.album}
             modalRef={(n) => (this.modal = n)}
             buttonRef={(n) => (this.closeButton = n)}
             closeModal={this.closeModal}

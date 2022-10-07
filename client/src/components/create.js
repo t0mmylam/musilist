@@ -6,7 +6,7 @@ export default function Create() {
         name: "",
         artist: "",
         released: "",
-        rating: "",
+        rating: 0,
         language: "",
     })
     const navigate = useNavigate()
@@ -32,7 +32,7 @@ export default function Create() {
             window.alert(error)
             return
         })
-        setForm({name: "",artist: "",released: "",rating: "",language: ""})
+        setForm({name: "",artist: "",released: "",rating: 0,language: ""})
         navigate("/")
     }
 
