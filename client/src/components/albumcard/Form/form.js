@@ -49,6 +49,7 @@ export const Form = ({ album }) => {
       window.alert(error);
       return;
     });
+    
     setForm({
       id: album.id,
       username: localStorage.getItem("user"),
